@@ -1,20 +1,15 @@
-import 'dart:isolate';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutterapp/Dashboard.dart';
-import 'package:flutterapp/LoginPage.dart';
-import 'package:flutterapp/MColors.dart';
-import 'package:flutterapp/SplashScreen.dart';
-import 'package:flutterapp/WidgetsUtil.dart';
+import 'package:flutterapptwo/SignupScreen.dart';
+
+import 'Dashboard.dart';
+import 'LoginPage.dart';
+import 'MColors.dart';
+import 'SplashScreen.dart';
+
 
 void main() {
 
-
-
   runApp(const MyApp());
-
-
 }
 
 class MyApp extends StatelessWidget {
@@ -27,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
-      title: 'Flutter Demo',
+      title: 'Flutter',
       theme: ThemeData(
         // This is the theme of your application.
         // Try running your application with "flutter run". You'll see the
@@ -39,13 +34,15 @@ class MyApp extends StatelessWidget {
         // is not restarted.
 
         fontFamily: "Caveat-Bold",
-        primarySwatch: MColors.black,
+
       ),
-      initialRoute: "/Loginscreen",
+      initialRoute: "/loginscreen",
       routes: {
         "/splashscreen" : (context) => SplashScreen(),
-        "/Loginscreen" : (context) =>  LoginPage(),
-        "/Dashboardscreen" : (Context) => Dashboard()
+        "/loginscreen" : (context) =>  LoginPage(),
+        "/dashboardscreen" : (Context) => Dashboard(),
+
+
       },
     );
   }

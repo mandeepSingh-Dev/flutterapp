@@ -1,4 +1,4 @@
-name: flutterapp
+name: flutterapptwo
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -36,10 +36,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  google_fonts: ^4.0.4
 
 dev_dependencies:
-  google_fonts: ^2.1.0
-
   flutter_test:
     sdk: flutter
 
@@ -61,10 +60,11 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+
   assets:
-      - images/unsplash.jpg
-      - images/leftarrow.png
-      - images/unsplashtwo.jpg
+    - images/unsplash.jpg
+    - images/leftarrow.png
+    - images/unsplashtwo.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -99,10 +99,8 @@ flutter:
 fonts:
   - family: Caveat
     fonts:
-        - asset: fonts/Caveat-Bold.ttf
-        - asset: fonts/Caveat-Medium.ttf
-        - asset: fonts/Caveat-Regular.ttf
-        - asset: fonts/Caveat-SemiBold.ttf
-
-
+      - asset: fonts/Caveat-Bold.ttf
+      - asset: fonts/Caveat-Medium.ttf
+      - asset: fonts/Caveat-Regular.ttf
+      - asset: fonts/Caveat-SemiBold.ttf
 

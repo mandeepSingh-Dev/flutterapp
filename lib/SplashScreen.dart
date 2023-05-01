@@ -6,10 +6,7 @@ import 'dart:isolate';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutterapp/Dashboard.dart';
-import 'package:flutterapp/LoginPage.dart';
-import 'package:flutterapp/SplashScreen.dart';
-import 'package:flutterapp/WidgetsUtil.dart';
+import 'package:flutterapptwo/LoginPage.dart';
 
 class SplashScreen extends StatefulWidget {
 

@@ -4,7 +4,9 @@ import 'dart:isolate';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/LoginDashboardArguments.dart';
+import 'package:flutterapptwo/Utils.dart';
+
+import 'LoginDashboardArguments.dart';
 
 class Dashboard extends StatefulWidget{
 
@@ -25,6 +27,8 @@ class DashBoardList extends State<Dashboard>{
     }, "message");
 
     var logindashboardArgument = ModalRoute.of(context)?.settings.arguments as LoginDashboardArguments;
+
+    context.showSnackbarr(logindashboardArgument.email.toString());
 
     return Scaffold(
         appBar:AppBar(title: Text(logindashboardArgument.email),),body: Padding(padding: EdgeInsets.all(20),
