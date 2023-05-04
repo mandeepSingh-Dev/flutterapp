@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutterapptwo/Dashboard.dart';
 import 'package:flutterapptwo/LoginDashboardArguments.dart';
+import 'package:flutterapptwo/SignupScreen.dart';
 import 'package:flutterapptwo/Utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -20,7 +21,9 @@ class loginPagee extends State<LoginPage>{
    TextEditingController _emailcontroller = TextEditingController();
    TextEditingController _passwordcontroller = TextEditingController();
 
-  @override
+   UnfocusDisposition disposition = UnfocusDisposition.scope;
+
+   @override
   Widget build(BuildContext context) {
 
     return Scaffold(
@@ -28,10 +31,8 @@ class loginPagee extends State<LoginPage>{
       resizeToAvoidBottomInset: false,
         backgroundColor: Colors.black,
         body: Container(
-          constraints: BoxConstraints.expand(height: 1000,width: double.infinity),
-            child:  SingleChildScrollView(child: Padding(padding: const EdgeInsets.only(top: 0,left: 24,right: 24, bottom: 24),
-            child: Column(
-
+          margin: EdgeInsets.all(20),
+                        child: Column(
                 children: [
                   Expanded(flex: 0,child: AnimatedContainer(padding: EdgeInsets.only(top: 24),
                       duration:Duration(seconds:1),
@@ -41,7 +42,9 @@ class loginPagee extends State<LoginPage>{
                               Expanded(flex:1,child: Text("Login",style: GoogleFonts.almendra(color: Colors.white,fontSize: 40,fontStyle: FontStyle.italic))),
                               Expanded(flex:0,
                                   child: SizedBox(width: 100.0,child: OutlinedButton(
-                                    onPressed: (){},
+                                    onPressed: (){
+                                      navigateToSignupScreen(context);
+                                      },
                                     style: ButtonStyle(
                                         backgroundColor: MaterialStateProperty.all(Colors.white10),
                                         shape:MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
@@ -81,7 +84,6 @@ class loginPagee extends State<LoginPage>{
                                     focusedBorder: OutlineInputBorder(borderSide: BorderSide(color:Colors.white,width: 1.0),borderRadius: BorderRadius.all(Radius.circular(15)))
                                 ),style: TextStyle(color: Colors.white),)
                           ),
-
                           Padding(padding: EdgeInsets.only(top:25),
                               child:
                               TextField(
@@ -125,6 +127,7 @@ class loginPagee extends State<LoginPage>{
                             width: double.infinity,
                             child: ElevatedButton(
                                 onPressed: (){
+                                  navigateToSignupScreen(context);
                                 },
                                 style: ElevatedButton.styleFrom(backgroundColor:Colors.white10,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),side: BorderSide(width: 2,color: Colors.orange)),
                                 child:  Padding(padding: EdgeInsets.only(top: 6,bottom: 6),child: Text("  Create  Account  ",style: GoogleFonts.sacramento(textStyle: const TextStyle(color: Colors.orange,fontSize: 25,fontWeight: FontWeight.bold)),),)
@@ -139,14 +142,21 @@ class loginPagee extends State<LoginPage>{
                   ),)
 
                 ]))
-             )
 
 
 
 
-        )
 
-    );
+        );
+
+  }
+
+  var focused = true;
+  void setTextFieldFocus(bool isFocused){
+    setState(() {
+      primaryFocus?.unfocus(disposition: disposition);
+      focused = isFocused;
+    });
   }
 
   void login(String email, String password){
@@ -159,10 +169,21 @@ class loginPagee extends State<LoginPage>{
     }else if(email.isEmpty && password.isEmpty){
       context.showSnackbarr("Email and Password should not be empty");
     }else{
-      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>  Dashboard()
-        ,settings: RouteSettings(arguments: LoginDashboardArguments("dfdfnd","dffkndkf"))));
-    }
 
+        setTextFieldFocus(false);
+
+      var dialog = AlertDialog(content: Wrap(alignment:WrapAlignment.center,children: [ Column(children: [Text("Login Ssuccessfully"),TextButton(onPressed: (){
+        Navigator.of(context).push(MaterialPageRoute(builder: (context)=>  Dashboard()
+            ,settings: RouteSettings(arguments: LoginDashboardArguments(email,password))));
+      }, child: Text("Ok"))],)],),
+      elevation: 40.0,);
+
+      showDialog(context: context, builder: (context)=>dialog);
+    }
+  }
+
+  void navigateToSignupScreen(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => SignupScreen()));
   }
 }
 

@@ -28,91 +28,18 @@ class DashBoardList extends State<Dashboard>{
 
     var logindashboardArgument = ModalRoute.of(context)?.settings.arguments as LoginDashboardArguments;
 
-    context.showSnackbarr(logindashboardArgument.email.toString());
 
     return Scaffold(
-        appBar:AppBar(title: Text(logindashboardArgument.email),),body: Padding(padding: EdgeInsets.all(20),
-    child: ListView(
-      children:  [
-        GestureDetector(child:Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 35),
-              child: Row(children: const [
-                Text("Hello 1",style: TextStyle(fontSize: 15)),
-                Text("Hello 3",style: TextStyle(fontSize: 15))],mainAxisAlignment: MainAxisAlignment.spaceBetween),
-            )),onTap: (){
-           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Clicked")));
-        })
-        ,
-       const Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
+        appBar:AppBar(title: Text(logindashboardArgument.email),),
+        body: Container(
+          margin: EdgeInsets.all(20),
+        child:Column(
+        children: [
+          TextField(
+    decoration: InputDecoration(labelText:"First Name",hintText:"Enter your first name.",border: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid))),
+    keyboardType: TextInputType.name,)
+    ],),)
+    );
 
-       const Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       const Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       const Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       const Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-       Card(shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)))
-            ,child: Padding(padding: EdgeInsets.only(left: 35,top: 20,bottom: 20,right: 20),
-                child: Text("Hello",style: TextStyle(fontSize: 15),))),
-
-
-      ]
-     )));
   }
 }
