@@ -1,4 +1,3 @@
-import 'package:flutterapptwo/model/UserData.dart';
 
 class UserData{
     String firstName;

@@ -1,13 +1,15 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutterapptwo/SignupScreen.dart';
+import 'package:flutterapptwo/Data/ContentsViewmodel.dart';
+import 'package:flutterapptwo/Data/ContetsRepository/ContentsRepository.dart';
+import 'package:provider/provider.dart';
 
 import 'Dashboard.dart';
 import 'LoginPage.dart';
-import 'MColors.dart';
 import 'SplashScreen.dart';
 
-
 void main() {
+
 
   runApp(const MyApp());
 }
@@ -15,11 +17,13 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
+    return MultiProvider(providers: [ChangeNotifierProvider(create: (_) => ContentsViewmodel(ContentsRepository()))],
+    child: MaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
       title: 'Flutter',
@@ -44,7 +48,8 @@ class MyApp extends StatelessWidget {
 
 
       },
-    );
+    ));
+
   }
 }
 

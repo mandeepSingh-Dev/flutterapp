@@ -5,8 +5,8 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutterapptwo/Constants.dart';
+import 'package:flutterapptwo/Data/model/UserData.dart';
 import 'package:flutterapptwo/Utils.dart';
-import 'package:flutterapptwo/model/UserData.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:developer' as developer;

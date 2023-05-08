@@ -1,22 +1,25 @@
+import 'dart:developer';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutterapptwo/Dashboard.dart';
+import 'package:flutterapptwo/Data/ContentsViewmodel.dart';
 import 'package:flutterapptwo/LoginDashboardArguments.dart';
 import 'package:flutterapptwo/SignupScreen.dart';
 import 'package:flutterapptwo/Utils.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget{
   LoginPage({super.key});
-
 
   @override
   State<StatefulWidget> createState() => loginPagee();
 }
 
 class loginPagee extends State<LoginPage>{
+
 
    TextEditingController _emailcontroller = TextEditingController();
    TextEditingController _passwordcontroller = TextEditingController();
@@ -25,6 +28,9 @@ class loginPagee extends State<LoginPage>{
 
    @override
   Widget build(BuildContext context) {
+
+
+
 
     return Scaffold(
       appBar: AppBar(title:  Text("Login",style: GoogleFonts.astloch(fontSize: 27,fontWeight: FontWeight.bold)), centerTitle: true),
@@ -43,6 +49,7 @@ class loginPagee extends State<LoginPage>{
                               Expanded(flex:0,
                                   child: SizedBox(width: 100.0,child: OutlinedButton(
                                     onPressed: (){
+
                                       navigateToSignupScreen(context);
                                       },
                                     style: ButtonStyle(
@@ -108,7 +115,12 @@ class loginPagee extends State<LoginPage>{
                               child:
                               ElevatedButton(
                                   onPressed: (){
-                                    login(_emailcontroller.value.text,_passwordcontroller.value.text);
+
+                                    var contentsViewmodel = context.watch<ContentsViewmodel>();
+                                 //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(contentsViewmodel.sealedClass.toString())));
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("dkndkncvd")));
+                                   // contentsViewmodel.getContent();
+                                   // login(_emailcontroller.value.text,_passwordcontroller.value.text);
                                   },
                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.deepOrange,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                   child:  Padding(padding: EdgeInsets.only(top: 6,bottom: 6),child: Text("  Login  ",style: GoogleFonts.sacramento(textStyle: const TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold)),),)

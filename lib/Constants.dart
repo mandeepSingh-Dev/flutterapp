@@ -1,6 +1,5 @@
 
 
-import 'package:flutterapptwo/model/UserData.dart';
 
 class  Constants{
   Constants._();
