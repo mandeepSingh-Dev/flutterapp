@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutterapptwo/Dashboard.dart';
 import 'package:flutterapptwo/Data/ContentsViewmodel.dart';
+import 'package:flutterapptwo/Data/ContetsRepository/ContentsRepository.dart';
 import 'package:flutterapptwo/LoginDashboardArguments.dart';
 import 'package:flutterapptwo/SignupScreen.dart';
 import 'package:flutterapptwo/Utils.dart';
@@ -29,6 +30,7 @@ class loginPagee extends State<LoginPage>{
    @override
   Widget build(BuildContext context) {
 
+     var contentsViewmodel = context.watch<ContentsViewmodel>();
 
 
 
@@ -108,7 +110,6 @@ class loginPagee extends State<LoginPage>{
 
                               )
                           ),
-
                           Padding(padding: EdgeInsets.only(top: 50),child:
                           SizedBox(
                               width: double.infinity,
@@ -116,17 +117,21 @@ class loginPagee extends State<LoginPage>{
                               ElevatedButton(
                                   onPressed: (){
 
-                                    var contentsViewmodel = context.watch<ContentsViewmodel>();
-                                 //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(contentsViewmodel.sealedClass.toString())));
-                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("dkndkncvd")));
-                                   // contentsViewmodel.getContent();
+                                    contentsViewmodel.getContent();
+                                    Future.delayed(Duration(seconds: 2),(){
+                                      if(contentsViewmodel.sealedClass is MyError ) {
+                                        var error = contentsViewmodel.sealedClass as MyError;
+                                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error.errorMessage.toString() )));
+                                      }
+                                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("dkndkncvd")));
+
+                                    });
+
                                    // login(_emailcontroller.value.text,_passwordcontroller.value.text);
                                   },
                                   style: ElevatedButton.styleFrom(backgroundColor: Colors.deepOrange,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                                   child:  Padding(padding: EdgeInsets.only(top: 6,bottom: 6),child: Text("  Login  ",style: GoogleFonts.sacramento(textStyle: const TextStyle(color: Colors.black,fontSize: 25,fontWeight: FontWeight.bold)),),)
-                              ))
-
-                          ),
+                              ))),
                           Padding(padding: EdgeInsets.only(top: 15),child:
                           Container(
                             child:  Row(mainAxisSize:MainAxisSize.max,mainAxisAlignment: MainAxisAlignment.center,children: const [
@@ -134,19 +139,32 @@ class loginPagee extends State<LoginPage>{
                             ],),)
 
                           ),
-                          Padding(padding: EdgeInsets.only(top: 15),child:
-                          SizedBox(
+                          Padding(padding: EdgeInsets.only(top: 15),child: SizedBox(
                             width: double.infinity,
                             child: ElevatedButton(
                                 onPressed: (){
-                                  navigateToSignupScreen(context);
+                                  contentsViewmodel.increment();
+                                  //navigateToSignupScreen(context);
                                 },
                                 style: ElevatedButton.styleFrom(backgroundColor:Colors.white10,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),side: BorderSide(width: 2,color: Colors.orange)),
                                 child:  Padding(padding: EdgeInsets.only(top: 6,bottom: 6),child: Text("  Create  Account  ",style: GoogleFonts.sacramento(textStyle: const TextStyle(color: Colors.orange,fontSize: 25,fontWeight: FontWeight.bold)),),)
                             ),
-                          )
+                          ))     ,
 
-                          ),
+                          Padding(padding: EdgeInsets.only(top: 15),child:
+                          AnimatedContainer(duration: Duration(seconds: 1),
+                            child:SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton(
+                                onPressed: (){
+                                  contentsViewmodel.increment();
+                                  //navigateToSignupScreen(context);
+                                },
+                                style: ElevatedButton.styleFrom(backgroundColor:Colors.white10,shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(contentsViewmodel.count.toDouble())),side: BorderSide(width: 2,color: ((contentsViewmodel.count%2)!==0) Colors.blue ?:Colors.orange),
+                                child:  Padding(padding: EdgeInsets.only(top: 6,bottom: 6),child: Text("  Edges: ${contentsViewmodel.count}  ",style: GoogleFonts.sacramento(textStyle: const TextStyle(color: Colors.orange,fontSize: 25,fontWeight: FontWeight.bold)),),)
+                            ),
+                          ),))
+
 
 
                         ]
