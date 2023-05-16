@@ -1,5 +1,6 @@
 
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutterapptwo/Data/ContetsRepository/ContentsRepository.dart';
 import 'package:flutterapptwo/Data/model/PixabayData.dart';
 
@@ -8,7 +9,7 @@ class ContentsRepository{
 
 
   ContentsRepository(){
-    dio = Dio(BaseOptions(baseUrl: "https://pixabay.com/"));
+    dio = Dio();
   }
   SealedClass? sealedClass;
   
@@ -16,12 +17,22 @@ class ContentsRepository{
 
     try {
       sealedClass = Loading();
-      var response = await dio?.get("api/?17284571-9dc44bcf97e2f82106c65a55e");
-      if(response?.statusCode ==200){
-        sealedClass = Success(response?.statusMessage, response);
+
+      var response = await dio?.get("https://pixabay.com/api?key=17284571-9dc44bcf97e2f82106c65a55e");
+
+      if(response?.statusCode == 200){
+       // debugPrint("edefd");
+     //   print("dkfkndjkfndkfnd ${PixabayData.fromJson(response?.data?.toString()).total}");
+        var pd = PixabayData.fromJson(response?.data?.toString());
+
+        sealedClass = Success(response?.statusMessage, pd );
+
+      //  print("DATA YE HAI ${response?.data.toString()}");
+
+     //   print("DATA YE PIXA HAI ${(response?.data as PixabayData).toString()}");
         return sealedClass!;
       }else{
-       // sealedClass = MyError(response?.statusMessage);
+        sealedClass = MyError(response?.statusMessage);
         return sealedClass!;
       }
     } catch(e){
@@ -40,9 +51,9 @@ class Loading extends SealedClass{
 
 }
 
-class Success<T> extends SealedClass{
+class Success extends SealedClass{
   String? message;
-  T data;
+  PixabayData data;
 
   Success(this.message,this.data);
 }

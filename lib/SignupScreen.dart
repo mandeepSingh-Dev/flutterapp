@@ -5,7 +5,9 @@ import 'dart:ffi';
 
 import 'package:flutter/material.dart';
 import 'package:flutterapptwo/Constants.dart';
+import 'package:flutterapptwo/Dashboard.dart';
 import 'package:flutterapptwo/Data/model/UserData.dart';
+import 'package:flutterapptwo/MWidgets.dart';
 import 'package:flutterapptwo/Utils.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -26,6 +28,7 @@ class SignUpScreenState extends State<SignupScreen>{
   TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController confirmpasswordController = TextEditingController();
 
   var color = Colors.black;
   var imageString = "images/unsplashtwo.jpg";
@@ -52,70 +55,31 @@ class SignUpScreenState extends State<SignupScreen>{
                   Padding(padding: EdgeInsets.only(top: 10,bottom: 20),
                       child: Text("Sign up",style: GoogleFonts.almendra(color: Colors.white,fontSize: 40,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold))),
                   Padding(padding: const EdgeInsets.only(top: 10),
-                    child: TextField(
-                      decoration: InputDecoration(labelText:"First Name",hintText:"Enter your first name.",hintStyle:TextStyle(color: Colors.white),labelStyle: TextStyle(color: Colors.white),focusColor: Colors.white,
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        disabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        enabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                      ),style: TextStyle(color: color),
-                      keyboardType: TextInputType.name,
-                    controller: firstNameController,),),
+                    child:  MWidgets.formTextFieldWidget("First Name", "Enter your first name.", color, firstNameController)
+                  ),
                   Padding(padding: const EdgeInsets.only(top: 10),
-                    child: TextField(
-                      decoration: InputDecoration(labelText:"Last Name",hintText:"Enter your last name.",hintStyle:TextStyle(color: Colors.white),labelStyle: TextStyle(color: Colors.white),focusColor: Colors.white,
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        disabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        enabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                      ),style: TextStyle(color: color),
-                      keyboardType: TextInputType.name,
-                        controller: lastNameController),),
+                    child:  MWidgets.formTextFieldWidget("Last Name", "Enter your last name.", color, lastNameController)
+              ,),
                   Padding(padding:const  EdgeInsets.only(top: 10),
-                    child: TextField(
-                      decoration: InputDecoration(labelText:"Email",hintText:"Enter your Email Address.",hintStyle:TextStyle(color: Colors.white),labelStyle: TextStyle(color: Colors.white),focusColor: Colors.white,
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        disabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        enabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                      ),style: TextStyle(color: color),
-                      keyboardType: TextInputType.name,
-                        controller: emailController),),
+                    child:
+                    MWidgets.formTextFieldWidget("Email", "Enter your Email Address.", color, emailController)
+                    ,),
                   Padding(padding:const EdgeInsets.only(top: 10),
-                    child:TextField(
-                      decoration: InputDecoration(labelText:"Phone",hintText:"Enter your Phone number.",hintStyle:TextStyle(color: Colors.white),labelStyle: TextStyle(color: Colors.white),focusColor: Colors.white,
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        disabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        enabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                      ),style: TextStyle(color: color),
-                      keyboardType: TextInputType.name,
-                        controller: phoneController),),
+                    child:
+                    MWidgets.formTextFieldWidget("Phone", "Enter your phone number.", color, phoneController)
+                  ,),
                   Padding(padding:const EdgeInsets.only(top: 10),
-                    child:TextField(
-                      decoration: InputDecoration(labelText:"Password",hintText:"Enter your Password.",hintStyle:TextStyle(color: Colors.white),labelStyle: TextStyle(color: Colors.white),focusColor: Colors.white,
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        disabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        enabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                      ),style: TextStyle(color: color),
-                      keyboardType: TextInputType.name,
-                        controller: passwordController),),
+                    child: MWidgets.formTextFieldWidget("Password", "Enter your password.", color, passwordController)
+                    ,),
                   Padding(padding: const EdgeInsets.only(top: 10,bottom: 40),
-                      child:TextField(
-                        decoration: InputDecoration(labelText:"Confirm Password",hintText:"R-enter your Password.",hintStyle:TextStyle(color: Colors.white),labelStyle: TextStyle(color: Colors.white),focusColor: Colors.white,
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                          focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                          disabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                          enabledBorder:  OutlineInputBorder(borderRadius: BorderRadius.circular(40),borderSide: const BorderSide(color: Colors.white,width: 2.0,style: BorderStyle.solid)),
-                        ),style: TextStyle(color: color),
-                        keyboardType: TextInputType.name,
-                          ) ),
+                    child:
+                    MWidgets.formTextFieldWidget("Confirm Password!", "Re-enter your Password.", color, confirmpasswordController)
+                  ),
                  SizedBox(width: double.infinity,child:
                  TextButton(
                    onPressed: (){
                      //context.showSnackbarr("kdfnkdjfkdfdf");
-                     signUp(firstNameController.value.text,lastNameController.value.text,emailController.value.text,passwordController.value.text,phoneController.value.text,context);
+                     signUp(firstNameController.value.text,lastNameController.value.text,emailController.value.text,passwordController.value.text,phoneController.value.text,confirmpasswordController.value.text,context);
                    },
                    style: ButtonStyle( shape: MaterialStateProperty.all( RoundedRectangleBorder(side: const BorderSide(color:Colors.orange,width: 2.0),borderRadius: BorderRadius.circular(30)))),
                    child: Text("Sign up",
@@ -132,48 +96,70 @@ class SignUpScreenState extends State<SignupScreen>{
     );
   }
 
-  void signUp(String firstName,String lastName,String email,String password,String phoneNumber,BuildContext context) async{
+  String firstNameError = "";
+  String lastNameError = "";
+  String emailError = "";
+  String passwordError = "";
+  String phoneNumberError = "";
+  String confirmPasswordError = "";
 
+  void signUp(String firstName,String lastName,String email,String password,String phoneNumber,String confirmPassword, BuildContext context) async{
+
+    if(firstName.isEmpty){
+        setState(() {
+          firstNameError = "Please enter your first name.";
+        });
+    }else if(lastName.isEmpty){
+      setState(() {
+        lastNameError = "Please enter your last name.";
+      });
+    }else if(email.isEmpty){
+      setState(() {
+        emailError = "Please enter your email.";
+      });
+    }else if(password.isEmpty){
+      setState(() {
+        passwordError = "Please enter your password.";
+      });
+    }else if(phoneNumber.isEmpty){
+      setState(() {
+        phoneNumberError = "Please enter your phone number.";
+      });
+    }
+    else if(confirmPassword.isEmpty){
+      setState(() {
+        confirmPasswordError = "Please confirm your password.";
+      });
+    }else {
+      if(password != confirmPassword){
+        setState(() {
+          confirmPasswordError = "Confirmed password is not matched with password.";
+        });
+      }else{
+        var userData = UserData(firstName,lastName,email,password,phoneNumber).tojson();
+        var userdjson = jsonEncode(userData);
+        addStringTo_ShrdPrfrnce(Constants.USERDATA,userdjson);
+      }
+    }
 
     final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
     var userData = UserData(firstName,lastName, email, password, phoneNumber);
 
-    try {
-      var userDataStr = jsonEncode(userData.tojson());
-      context.showSnackbarr(userDataStr);
-      sharedPreferences.setString(Constants.USERDATA,userDataStr);
+    var userDataStr = jsonEncode(userData.tojson());
+    var isSaved = sharedPreferences.setString(Constants.USERDATA,userDataStr);
+    isSaved.then((value) {
+      if(value){
+        AlertDialog(content: Text("Signed up Succefully"),actions: [
+          TextButton(onPressed: (){
+            navigateToDashboard(context);
+          }, child: Text("Ok"))
+        ],);
+      }
+    });
+  }
 
-      await Future.delayed(Duration(seconds: 2),(){
-        var userDataStr = sharedPreferences.getString(Constants.USERDATA);
-
-        Map<String,dynamic>  f =   jsonDecode(userDataStr!);
-
-        setState(() {
-          if(color ==Colors.black) {
-            color = Colors.white;
-          }else{
-            color = Colors.blue;
-          }
-        });
-
-        setState(() {
-          if(imageString == "images/unsplashtwo.jpg"){
-            imageString = "images/unsplash.jpg";
-          }else{
-            imageString = "images/unsplashtwo.jpg";
-          }
-        });
-        context.showSnackbarr("messgage");
-      });
-    }catch(e){
-      context.showSnackbarr(e.toString());
-      throw Exception(e);
-    }
-
-
-  //  sharedPreferences.setString(Constants.USERDATA,userData )
-    
-
+  void navigateToDashboard(BuildContext context){
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Dashboard()));
   }
 }
