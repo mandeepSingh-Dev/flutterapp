@@ -106,58 +106,53 @@ class SignUpScreenState extends State<SignupScreen>{
   void signUp(String firstName,String lastName,String email,String password,String phoneNumber,String confirmPassword, BuildContext context) async{
 
     if(firstName.isEmpty){
-        setState(() {
+      context.showSnackbarr("firstName");   setState(() {
           firstNameError = "Please enter your first name.";
+
         });
     }else if(lastName.isEmpty){
-      setState(() {
+      context.showSnackbarr("lastName");  setState(() {
         lastNameError = "Please enter your last name.";
       });
     }else if(email.isEmpty){
-      setState(() {
+      context.showSnackbarr("email");  setState(() {
         emailError = "Please enter your email.";
       });
     }else if(password.isEmpty){
-      setState(() {
+      context.showSnackbarr("password"); setState(() {
         passwordError = "Please enter your password.";
       });
     }else if(phoneNumber.isEmpty){
-      setState(() {
+      context.showSnackbarr("phoneNumber");  setState(() {
         phoneNumberError = "Please enter your phone number.";
       });
     }
     else if(confirmPassword.isEmpty){
-      setState(() {
+      context.showSnackbarr("confirmPassword"); setState(() {
         confirmPasswordError = "Please confirm your password.";
       });
     }else {
       if(password != confirmPassword){
-        setState(() {
+        context.showSnackbarr("confirmPassword dvfd"); setState(() {
           confirmPasswordError = "Confirmed password is not matched with password.";
         });
       }else{
+        context.showSnackbarr("messgage");
         var userData = UserData(firstName,lastName,email,password,phoneNumber).tojson();
         var userdjson = jsonEncode(userData);
         addStringTo_ShrdPrfrnce(Constants.USERDATA,userdjson);
-      }
-    }
 
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
-    var userData = UserData(firstName,lastName, email, password, phoneNumber);
-
-    var userDataStr = jsonEncode(userData.tojson());
-    var isSaved = sharedPreferences.setString(Constants.USERDATA,userDataStr);
-    isSaved.then((value) {
-      if(value){
-        AlertDialog(content: Text("Signed up Succefully"),actions: [
+        var dialog = AlertDialog(content: Text("Signed up Succefully"),actions: [
           TextButton(onPressed: (){
             navigateToDashboard(context);
           }, child: Text("Ok"))
         ],);
+
+        showDialog(context: context, builder: (context)=> dialog);
       }
-    });
-  }
+
+      }
+    }
 
   void navigateToDashboard(BuildContext context){
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => Dashboard()));

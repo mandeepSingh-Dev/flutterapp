@@ -51,11 +51,11 @@ class DashBoardList extends State<Dashboard>{
       });
     }, "message");
 
-    var logindashboardArgument = ModalRoute.of(context)?.settings.arguments as LoginDashboardArguments;
+   // var logindashboardArgument = ModalRoute.of(context)?.settings.arguments as LoginDashboardArguments;
 
 
     return Scaffold(
-        appBar:AppBar(title: Text(logindashboardArgument.email),),
+        appBar:AppBar(title: Text("jhuj"),),
         body: Container(
           margin: EdgeInsets.all(20),
         child:Column(
