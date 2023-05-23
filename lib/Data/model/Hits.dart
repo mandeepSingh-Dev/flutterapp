@@ -69,6 +69,9 @@ class Hits {
   int? userId;
   String? user;
   String? userImageURL;
+  int? viewType;
+  String? alphabet;
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -96,5 +99,7 @@ class Hits {
     map['userImageURL'] = userImageURL;
     return map;
   }
+
+  Hits.initt();
 
 }

@@ -23,7 +23,7 @@ class UserData{
     }
 
 
-    UserData fromJson(Map json){
+    UserData fromJson(dynamic json){
         return UserData(json["firstName"],json["lastName"],json["email"],json["password"],json["phoneNumber"]);
 
     }

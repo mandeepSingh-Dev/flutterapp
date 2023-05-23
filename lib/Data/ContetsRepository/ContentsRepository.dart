@@ -18,12 +18,13 @@ class ContentsRepository{
     try {
       sealedClass = Loading();
 
-      var response = await dio?.get("https://pixabay.com/api?key=17284571-9dc44bcf97e2f82106c65a55e");
+      var response = await dio?.get("https://pixabay.com/api?key=17284571-9dc44bcf97e2f82106c65a55e&per_page=100");
 
       if(response?.statusCode == 200){
        // debugPrint("edefd");
      //   print("dkfkndjkfndkfnd ${PixabayData.fromJson(response?.data?.toString()).total}");
-        var pd = PixabayData.fromJson(response?.data?.toString());
+        var mapData = response?.data as Map<String,dynamic>;
+        var pd = PixabayData.fromJson(mapData);
 
         sealedClass = Success(response?.statusMessage, pd );
 

@@ -140,7 +140,10 @@ class SignUpScreenState extends State<SignupScreen>{
         context.showSnackbarr("messgage");
         var userData = UserData(firstName,lastName,email,password,phoneNumber).tojson();
         var userdjson = jsonEncode(userData);
-        addStringTo_ShrdPrfrnce(Constants.USERDATA,userdjson);
+       var r = await addStringTo_ShrdPrfrnce(Constants.USERDATA,userdjson);
+
+
+       print("dkfnkdnd:  $r");
 
         var dialog = AlertDialog(content: Text("Signed up Succefully"),actions: [
           TextButton(onPressed: (){
